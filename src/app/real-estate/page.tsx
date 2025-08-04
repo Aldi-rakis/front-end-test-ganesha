@@ -66,6 +66,24 @@ export default function RealEstate() {
         </div>
       </header>
 
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white shadow-lg animate-slideDown">
+          <nav className="px-4 py-6 space-y-4">
+            <Link href="/" className="block text-gray-600 hover:text-gray-900 transition-colors duration-300">Home</Link>
+            <Link href="#" className="block text-gray-600 hover:text-gray-900 transition-colors duration-300">About Us</Link>
+            <Link href="#" className="block text-gray-600 hover:text-gray-900 transition-colors duration-300">Divisions</Link>
+            <Link href="#" className="block text-gray-600 hover:text-gray-900 transition-colors duration-300">Careers</Link>
+            <Link href="#" className="block text-gray-600 hover:text-gray-900 transition-colors duration-300">Contact Us</Link>
+            <div className="pt-4 border-t border-gray-200">
+              <button className="w-full text-center text-gray-600 hover:text-gray-900 px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-all duration-300">
+                Login / Register
+              </button>
+            </div>
+          </nav>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-start justify-items-start overflow-hidden">
         {/* Background Building Image */}

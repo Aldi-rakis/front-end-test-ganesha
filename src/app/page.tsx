@@ -1,10 +1,19 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm animate-slideInDown">
+      <header className="bg-white shadow-sm animate-slideInDown relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center animate-fadeInLeft">
@@ -12,18 +21,69 @@ export default function Home() {
               <span className="ml-2 text-gray-600">/</span>
               <span className="ml-2 text-gray-600">lsurance@tiropay.au</span>
             </div>
-            <div className="flex items-center space-x-4 animate-fadeInRight">
-              <a href="/real-estate" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">Real Estate</a>
-              <a href="/greenbloom" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">GreenBloom</a>
-              <button className="text-gray-600 hidden lg:block border-gray-300 border-0 lg:border-2  lg:px-6 lg:py-2 rounded-full hover:text-gray-900 transition-colors duration-300">Log In</button>
-              <button className="bg-black text-white hidden lg:block px-6 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 hover:scale-105">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-4 animate-fadeInRight">
+              <Link href="/real-estate" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">Real Estate</Link>
+              <Link href="/greenbloom" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">GreenBloom</Link>
+              <button className="text-gray-600 border-gray-300 border-2 px-6 py-2 rounded-full hover:text-gray-900 transition-colors duration-300">Log In</button>
+              <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 hover:scale-105">
                 Get Started
               </button>
-              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-300">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </div>
+
+            {/* Mobile Hamburger Button */}
+            <div className="lg:hidden flex items-center animate-fadeInRight">
+              <button 
+                onClick={toggleMenu}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-300"
+                aria-label="Toggle menu"
+              >
+                <svg 
+                  className={`w-6 h-6 transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  {isMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
                 </svg>
               </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div className={`lg:hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen 
+              ? 'max-h-96 opacity-100 visible' 
+              : 'max-h-0 opacity-0 invisible'
+          } overflow-hidden`}>
+            <div className="py-4 space-y-4 border-t border-gray-200">
+              <Link 
+                href="/real-estate" 
+                className="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-300 transform hover:scale-105"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Real Estate
+              </Link>
+              <Link 
+                href="/greenbloom" 
+                className="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-300 transform hover:scale-105"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                GreenBloom
+              </Link>
+              <div className="px-4 space-y-3">
+                <button className="w-full text-gray-600 border-gray-300 border-2 px-6 py-3 rounded-full hover:text-gray-900 hover:bg-gray-50 transition-all duration-300">
+                  Log In
+                </button>
+                <button className="w-full bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-all duration-300">
+                  Get Started
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -148,9 +208,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col sm:flex-row justify-between items-center">
             <div className="flex items-center space-x-6 mb-4 sm:mb-0">
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">Terms Policy</a>
+              <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">Terms Policy</Link>
               <span className="text-gray-400">•</span>
-              <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">Customer Story</a>
+              <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 hover:scale-105">Customer Story</Link>
             </div>
             <button className="bg-gray-100 rounded-full p-2 hover:bg-gray-200 transition-all duration-300 hover:scale-110 hover:rotate-12">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

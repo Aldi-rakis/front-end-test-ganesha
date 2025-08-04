@@ -7,9 +7,9 @@ import plant from '@/asset/plant.jpg';
 export default function GreenBloom() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//   };
 
   return (
     <div className="min-h-screen bg-gray-50">

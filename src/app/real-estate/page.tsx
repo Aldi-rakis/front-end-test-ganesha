@@ -7,10 +7,9 @@ import { useState } from "react";
 export default function RealEstate() {
  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-    const gedung2  = "/asset/gedung.jpg";
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
       {/* Header */}
